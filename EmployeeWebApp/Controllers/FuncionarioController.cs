@@ -30,11 +30,12 @@ namespace EmployeeWebApp.Controllers
         }
 
         // GET
-        public ActionResult Edit(Funcionario funcionario, int id)
+        public ActionResult Edit(int id)
         {
-            var query = (from f in contexto.Funcionarios
+            var query = (from f in contexto.Funcionarios.Include(f => f.Empresa)
                          where f.FuncionarioID == id
                          select f).FirstOrDefault();
+            ViewBag.EmpresaID = new SelectList(contexto.Empresas, "EmpresaID", "NomeDaEmpresa", query.EmpresaID);            
             return View(query);
         }
 
@@ -66,10 +67,30 @@ namespace EmployeeWebApp.Controllers
                     service.CreateFuncionario(funcionario);
                     return RedirectToAction("Index");
                 }
+                ViewBag.EmpresaID = new SelectList(contexto.Empresas, "EmpresaID", "NomeDaEmpresa", funcionario.EmpresaID);
+                return View(funcionario);
             }
             catch
             {
                 ModelState.AddModelError("", "Tente novamente");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Funcionario funcionario, int id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    service.EditFuncionario(funcionario, id);
+                    return RedirectToAction("Index");
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Tente novamente.");
             }
             return View();
         }

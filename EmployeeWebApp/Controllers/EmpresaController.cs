@@ -27,7 +27,7 @@ namespace EmployeeWebApp.Controllers
         }
 
         // GET
-        public ActionResult Edit(Empresa empresa, int id)
+        public ActionResult Edit(int id)
         {
             var query = (from e in contexto.Empresas
                          where e.EmpresaID == id
@@ -70,5 +70,23 @@ namespace EmployeeWebApp.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Edit(Empresa empresa, int id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    service.EditEmpresa(empresa, id);
+                    return RedirectToAction("Index");
+                }
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Tente novamente");
+            }
+            return View();
+        }        
     }
 }

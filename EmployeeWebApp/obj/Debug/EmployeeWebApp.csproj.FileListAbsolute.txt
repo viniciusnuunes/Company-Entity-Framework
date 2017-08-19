@@ -54,3 +54,4 @@ c:\users\vinicius.nunes\documents\visual studio 2017\Projects\EmployeeWebApp\Emp
 c:\users\vinicius.nunes\documents\visual studio 2017\Projects\EmployeeWebApp\EmployeeWebApp\bin\pt-br\System.Web.Mvc.resources.dll
 c:\users\vinicius.nunes\documents\visual studio 2017\Projects\EmployeeWebApp\EmployeeWebApp\obj\Debug\EmployeeWebApp.dll
 c:\users\vinicius.nunes\documents\visual studio 2017\Projects\EmployeeWebApp\EmployeeWebApp\obj\Debug\EmployeeWebApp.pdb
+C:\Users\vinicius.nunes\Documents\Visual Studio 2017\Projects\EmployeeWebApp\EmployeeWebApp\obj\Debug\EmployeeWebApp.csprojResolveAssemblyReference.cache

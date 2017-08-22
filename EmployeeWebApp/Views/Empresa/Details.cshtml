@@ -1,0 +1,34 @@
+﻿@model EmployeeWebApp.Models.Empresa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Empresa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeDaEmpresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeDaEmpresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpresaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

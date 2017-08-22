@@ -23,15 +23,13 @@ namespace EmployeeWebApp.Models
         [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyy}")]
-        public DateTime DataDeNascimento { get; set; }
+        public string DataDeNascimento { get; set; }
 
         [Required]
         public string Sexo { get; set; }
 
-        [Required]
-        [Display(Name = "Nome da Empresa")]
+        
         public int EmpresaID { get; set; }
-
         public virtual Empresa Empresa { get; set; }
     }
 }

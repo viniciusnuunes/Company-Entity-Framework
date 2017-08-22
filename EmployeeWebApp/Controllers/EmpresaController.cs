@@ -36,7 +36,7 @@ namespace EmployeeWebApp.Controllers
         }
         
         // GET
-        public ActionResult Delete(Empresa empresa, int id)
+        public ActionResult Delete(int id)
         {
             var query = (from e in contexto.Empresas
                          where e.EmpresaID == id
@@ -87,6 +87,21 @@ namespace EmployeeWebApp.Controllers
                 ModelState.AddModelError("", "Tente novamente");
             }
             return View();
-        }        
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Empresa empresa, int id)
+        {
+            try
+            {
+                service.DeleteEmpresa(empresa, id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Tente novamente.");
+            }
+            return View("Index");
+        }
     }
 }

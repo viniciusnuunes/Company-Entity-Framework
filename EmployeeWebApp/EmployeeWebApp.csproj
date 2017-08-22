@@ -143,6 +143,8 @@
     <Content Include="Views\Funcionario\Edit.cshtml" />
     <Content Include="Views\Empresa\Delete.cshtml" />
     <Content Include="Views\Empresa\Details.cshtml" />
+    <Content Include="Views\Funcionario\Delete.cshtml" />
+    <Content Include="Views\Funcionario\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

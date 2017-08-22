@@ -40,21 +40,22 @@ namespace EmployeeWebApp.Controllers
         }
 
         // GET
-        public ActionResult Delete(Funcionario funcionario, int id)
+        public ActionResult Delete(int id)
         {
-            var query = (from f in contexto.Funcionarios
+            var funcionarios = (from f in contexto.Funcionarios.Include(f => f.Empresa)
                          where f.FuncionarioID == id
                          select f).FirstOrDefault();
-            return View(query);
+            ViewBag.EmpresaID = new SelectList(contexto.Empresas, "ClienteID", "NomeDaEmpresa", funcionarios.EmpresaID);
+            return View(funcionarios);
         }
 
         // GET
         public ActionResult Details(Funcionario funcionario, int id)
         {
-            var query = (from f in contexto.Funcionarios
+            var funcionarios = (from f in contexto.Funcionarios.Include(f => f.Empresa)
                          where f.FuncionarioID == id
                          select f).FirstOrDefault();
-            return View(query);
+            return View(funcionarios);
         }
 
         [HttpPost]
@@ -93,6 +94,21 @@ namespace EmployeeWebApp.Controllers
                 ModelState.AddModelError("", "Tente novamente.");
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Funcionario funcionario, int id)
+        {
+            try
+            {
+                service.DeleteFuncionario(funcionario, id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Tente novamente");
+            }
+            return View("Index");
         }
     }
 }
